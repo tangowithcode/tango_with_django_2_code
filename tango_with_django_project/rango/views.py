@@ -118,19 +118,7 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     
     request.session['visits'] = visits
-
-# def search(request):
-#     result_list = []
-#     query = ''
-
-#     if request.method == 'POST':
-#         query = request.POST['query'].strip()
-
-#         if query:
-#             result_list = run_query(query)
     
-#     return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
-
 def goto_url(request):
     if request.method == 'GET':
         page_id = request.GET.get('page_id')
