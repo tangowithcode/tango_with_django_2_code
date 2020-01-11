@@ -43,7 +43,7 @@ def show_category(request, category_name_slug):
         context_dict['pages'] = None
         context_dict['category'] = None
     
-    if request.method == 'POST' and True:
+    if request.method == 'POST' and True and request.user.is_authenticated:
         query = request.POST['query'].strip()
 
         if query:
