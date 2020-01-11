@@ -7,6 +7,7 @@ from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from datetime import datetime
 from rango.bing_search import run_query
+from django.views import View
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
@@ -29,6 +30,18 @@ def about(request):
     context_dict['visits'] = request.session['visits']
 
     return render(request, 'rango/about.html', context=context_dict)
+
+class AboutView(View):
+    """
+    The about view, converted to a class-based approach. DM.
+    """
+    def get(self, request):
+        context_dict = {}
+
+        visitor_cookie_handler(request)
+        context_dict['visits'] = request.session['visits']
+
+        return render(request, 'rango/about.html', context_dict)
 
 def show_category(request, category_name_slug):
     context_dict = {}
