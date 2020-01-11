@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Add a Category</h1>
+<div class="jumbotron p-4">
+    <div class="container">
+        <h1 class="jumbotron-heading">Add a Category</h1>
+    </div>
+</div>
 <div>
     <form id="category_form" method="post" action="{% url 'rango:add_category' %}">
         {% csrf_token %}
