@@ -24,14 +24,6 @@ def index(request):
 
     return render(request, 'rango/index.html', context=context_dict)
 
-def about(request):
-    # Spoiler: now you DO need a context dictionary!
-    context_dict = {}
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
-
-    return render(request, 'rango/about.html', context=context_dict)
-
 class AboutView(View):
     """
     The about view, converted to a class-based approach. DM.
@@ -65,21 +57,6 @@ def show_category(request, category_name_slug):
             context_dict['query'] = query
 
     return render(request, 'rango/category.html', context=context_dict)
-
-@login_required
-def add_category(request):
-    form = CategoryForm()
-
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect(reverse('rango:index'))
-        else:
-            print(form.errors)
-    
-    return render(request, 'rango/add_category.html', {'form': form})
 
 class AddCategoryView(View):
     @method_decorator(login_required)
