@@ -16,9 +16,16 @@ def index(request):
     context_dict['pages'] = page_list
     context_dict['extra'] = 'From the model solution on GitHub'
 
+    # Cookie tasting
+    request.session.set_test_cookie()
+
     return render(request, 'rango/index.html', context=context_dict)
 
 def about(request):
+    if request.session.test_cookie_worked():
+        print("TEST COOKIE WORKED!")
+        request.session.delete_test_cookie()
+
     # Spoiler: you don't need to pass a context dictionary here.
     return render(request, 'rango/about.html')
 
