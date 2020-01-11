@@ -36,6 +36,36 @@
     {% if user.is_authenticated %}
     <a href="{% url 'rango:add_page' category.slug %}">Add Page</a> <br />
     {% endif %}
+
+    <div>
+        <form class="form-inline" id="user-form" method="post" action="{% url 'rango:show_category' category.slug %}">
+            {% csrf_token %}
+    
+            <div class="form-group">
+                <input class="form-control" type="text" size="50" name="query" id="query" value="{{ query }}" />
+            </div>
+    
+            <button class="btn btn-primary" type="submit" name="submit">Search</button>
+        </form>
+    </div>
+    <div>
+        {% if result_list %}
+        <h2>Results</h2>
+    
+        <div class="list-group">
+        {% for result in result_list %}
+            <div class="list-group-item">
+                <h3 class="list-group-item-heading">
+                    <a href="{{ result.link }}">{{ result.title|safe|escape }}</a>
+                </h3>
+                <p class="list-group-item-text">
+                    {{ result.summary|safe|escape }}
+                </p>
+            </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+    </div>
     {% else %}
     The specified category does not exist.
     {% endif %}

@@ -43,6 +43,12 @@ def show_category(request, category_name_slug):
         context_dict['pages'] = None
         context_dict['category'] = None
     
+    if request.method == 'POST' and True:
+        query = request.POST['query'].strip()
+
+        if query:
+            context_dict['result_list'] = run_query(query)
+
     return render(request, 'rango/category.html', context=context_dict)
 
 @login_required
@@ -113,17 +119,17 @@ def visitor_cookie_handler(request):
     
     request.session['visits'] = visits
 
-def search(request):
-    result_list = []
-    query = ''
+# def search(request):
+#     result_list = []
+#     query = ''
 
-    if request.method == 'POST':
-        query = request.POST['query'].strip()
+#     if request.method == 'POST':
+#         query = request.POST['query'].strip()
 
-        if query:
-            result_list = run_query(query)
+#         if query:
+#             result_list = run_query(query)
     
-    return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
+#     return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
 
 def goto_url(request):
     if request.method == 'GET':
