@@ -11,17 +11,17 @@
     </div>
 </div>
 
-<form method="post" action=".">
-    {% csrf_token %}
+<link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet">
+<div class="container">
+    <form class="form-signin" role="form" method="post" action=".">
+        {% csrf_token %}
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" required autofocus>
 
-    {{ form.as_p }}
-
-    <input type="submit" value="Log In" />
-    <input type="submit" name="next" value="{{ next }}" />
-</form>
-
-<p>
-    Not registered?
-    <a href="{% url 'registration_register' %}">Register here!</a>
-</p>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in</button>
+    </form>
+</div>
 {% endblock %}
