@@ -48,6 +48,7 @@ def show_category(request, category_name_slug):
 
         if query:
             context_dict['result_list'] = run_query(query)
+            context_dict['query'] = query
 
     return render(request, 'rango/category.html', context=context_dict)
 
@@ -118,7 +119,7 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     
     request.session['visits'] = visits
-    
+
 def goto_url(request):
     if request.method == 'GET':
         page_id = request.GET.get('page_id')
