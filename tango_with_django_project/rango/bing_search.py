@@ -35,3 +35,13 @@ def run_query(search_terms):
         results.append({'title': result['name'], 'link': result['url'], 'summary': result['snippet']})
     
     return results
+
+if __name__ == '__main__':
+    search_terms = input("Enter your query terms: ")
+    results = run_query(search_terms)
+
+    for result in results:
+        print(result['title'])
+        print(result['link'])
+        print(result['summary'])
+        print('===============')
