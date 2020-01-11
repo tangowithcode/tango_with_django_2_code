@@ -226,6 +226,13 @@ class ProfileView(View):
         
         return render(request, 'rango/profile.html', context_dict)
 
+class ListProfilesView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        profiles = UserProfile.objects.all()
+
+        return render(request, 'rango/list_profiles.html', {'user_profile_list': profiles})
+
 def get_server_side_cookie(request, cookie, default_val=None):
     val = request.session.get(cookie)
     if not val:
