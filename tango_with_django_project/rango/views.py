@@ -7,4 +7,5 @@ def index(request):
     return render(request, 'rango/index.html', context=context_dict)
 
 def about(request):
-    return HttpResponse("Rango says here is the about page. <a href='/rango/'>Index</a>")
+    # Spoiler: you don't need to pass a context dictionary here.
+    return render(request, 'rango/about.html')
