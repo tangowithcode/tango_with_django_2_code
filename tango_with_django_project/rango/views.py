@@ -8,6 +8,7 @@ from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from datetime import datetime
 from rango.bing_search import run_query
 from django.views import View
+from django.utils.decorators import method_decorator
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
@@ -79,6 +80,24 @@ def add_category(request):
             print(form.errors)
     
     return render(request, 'rango/add_category.html', {'form': form})
+
+class AddCategoryView(View):
+    @method_decorator(login_required)
+    def get(self, request):
+        form = CategoryForm()
+        return render(request, 'rango/add_category.html', {'form': form})
+
+    @method_decorator(login_required)
+    def post(self, request):
+        form = CategoryForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect(reverse('rango:index'))
+        else:
+            print(form.errors)
+
+        return render(request, 'rango/add_category.html', {'form': form})
 
 @login_required
 def add_page(request, category_name_slug):
