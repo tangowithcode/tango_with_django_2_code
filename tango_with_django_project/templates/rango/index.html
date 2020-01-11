@@ -14,6 +14,19 @@
             hey there partner! <br />
             <strong>{{ boldmessage }}</strong><br />
         </div>
+
+        <div>
+        {% if categories %}
+            <ul>
+            {% for category in categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+        </div>
+
         <div>
             <a href="/rango/about/">About</a><br />
             <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
