@@ -6,3 +6,4 @@ db.sqlite3
 thumbs.db
 migrations/
 Thumbs.db
+profile_images/
