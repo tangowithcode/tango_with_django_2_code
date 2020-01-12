@@ -15,8 +15,7 @@ class CategoryMethodTests(TestCase):
         """
         Ensures the number of views received for a Category are positive or zero.
         """
-        category = Category(name='test', views=-1, likes=0)
-        category.save()
+        category = add_category('test', views=-1, likes=0)
 
         self.assertEqual((category.views >=0), True)
     
@@ -25,7 +24,7 @@ class CategoryMethodTests(TestCase):
         Checks to make sure that when a category is created, an appropriate slug is created.
         Example: "Random Category String" should be "random-category-string".
         """
-        category = Category(name='Random Category String')
+        category = add_category('Random Category String')
         category.save()
 
         self.assertEqual(category.slug, 'random-category-string')
