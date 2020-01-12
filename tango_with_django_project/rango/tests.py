@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
-from rango.models import Category
+from django.utils import timezone
+from rango.models import Category, Page
 
 def add_category(name, views=0, likes=0):
     category = Category.objects.get_or_create(name=name)[0]
@@ -9,6 +10,9 @@ def add_category(name, views=0, likes=0):
 
     category.save()
     return category
+
+def add_page(category, title, url):
+    return Page.objects.get_or_create(category=category, title=title, url=url)[0]
 
 class CategoryMethodTests(TestCase):
     def test_ensure_views_are_positive(self):
@@ -56,3 +60,23 @@ class IndexViewTests(TestCase):
 
         num_categories = len(response.context['categories'])
         self.assertEquals(num_categories, 3)
+
+class PageAccessTests(TestCase):
+    def test_last_visit_not_in_future(self):
+        category = add_category('Django', 1, 1)
+        page = add_page(category, 'TwD', 'https://www.tangowithdjango.com')
+
+        self.assertTrue(page.last_visit < timezone.now())
+    
+    def test_last_visit_is_updated(self):
+        category = add_category('Python', 1, 1)
+        page = add_page(category, 'Documentation', 'https://docs.python.org/3/')
+        created_date = page.last_visit
+
+        # Time WILL pass before this is executed.
+        response = self.client.get(reverse('rango:goto'), {'page_id': page.id})
+
+        # Refresh the model instance.
+        page.refresh_from_db()
+
+        self.assertTrue(page.last_visit > created_date)
