@@ -51,7 +51,7 @@
                     {% if pages %}
                     <ul class="list-group">
                     {% for page in pages %}
-                        <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li class="list-group-item">
+                        <li class="list-group-item"><a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title }}</a></li class="list-group-item">
                     {% endfor %}
                     </ul>
                     {% else %}
