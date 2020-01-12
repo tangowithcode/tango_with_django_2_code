@@ -31,7 +31,7 @@ with open('secret.key', 'r') as f:
 SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['rangodemo2020.pythonanywhere.com']
 
