@@ -47,10 +47,6 @@
     {% endif %}
 
     {% if user.is_authenticated %}
-    <a href="{% url 'rango:add_page' category.slug %}">Add Page</a> <br />
-    {% endif %}
-
-    {% if user.is_authenticated %}
     <div>
         <form class="form-inline" id="user-form" method="post" action="{% url 'rango:show_category' category.slug %}">
             {% csrf_token %}
