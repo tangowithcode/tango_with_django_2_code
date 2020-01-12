@@ -1,7 +1,7 @@
 # Tango with Django 2 Codebase
 This is a model solution for the *Tango with Django 2* book. Included are model solutions to all of the exercises included through each chapter. Screenshots that appear in the book were taken from a browser when executing this code.
 
-If you notice something that doesn't work -- or you think there's a better way to solve something -- it would be great to hear from you. Add an [*issue*](https://github.com/maxwelld90/tango_with_django_2_code/issues) to this repository, and myself of Leif will get back to you!
+If you notice something that doesn't work -- or you think there's a better way to solve something -- it would be great to hear from you. Add an [*issue*](https://github.com/maxwelld90/tango_with_django_2_code/issues) to this repository, and myself or Leif will get back to you!
 
 Everything is working as of January 10, 2020.
 
