@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+    <div id="page-listing"> <!-- For AJAX page adding functionality. -->
     {% if pages %}
     <ul>
         {% for page in pages %}
@@ -40,6 +41,7 @@
         </li>
         {% endfor %}
     </ul>
+    </div>
     {% else %}
     <strong>No pages currently in category.</strong>
     {% endif %}
@@ -69,6 +71,7 @@
             <div class="list-group-item">
                 <h3 class="list-group-item-heading">
                     <a href="{{ result.link }}">{{ result.title|safe|escape }}</a>
+                    <button class="btn btn-info btn-sm rango-page-add" type="button" data-categoryid="{{ category.id }}" data-title="{{ result.title }}" data-url="{{ result.link }}">Add</button>
                 </h3>
                 <p class="list-group-item-text">
                     {{ result.summary|safe|escape }}
