@@ -22,7 +22,13 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sq_z*m=yr)aiu$9lyzf@)&-!o(yjs=)9igwhuco$d7@a3jed=@'
+# This is modified for the deployment chapter of Tango with Django.
+# We don't care about this secret key; but you should! Keep your keys safe.
+key = None
+with open('secret.key', 'r') as f:
+    key = f.read().strip()
+    
+SECRET_KEY = key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
