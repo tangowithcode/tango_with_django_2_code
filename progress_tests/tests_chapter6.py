@@ -115,7 +115,7 @@ class Chapter6IndexViewTests(TestCase):
             'How to Think like a Computer Scientist': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://www.greenteapress.com/thinkpython/"|\'http://www.greenteapress.com/thinkpython/\')(\s*)>(\s*|\n*)How to Think like a Computer Scientist(\s*|\n*)</a>(\s*|\n*)</li>',
             'Learn Python in 10 Minutes': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://www.korokithakis.net/tutorials/python/"|\'http://www.korokithakis.net/tutorials/python/\')(\s*)>(\s*|\n*)Learn Python in 10 Minutes(\s*|\n*)</a>(\s*|\n*)</li>',
             'Official Django Tutorial': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("https://docs.djangoproject.com/en/2.1/intro/tutorial01/"|\'https://docs.djangoproject.com/en/2.1/intro/tutorial01/\')(\s*)>(\s*|\n*)Official Django Tutorial(\s*|\n*)</a>(\s*|\n*)</li>',
-            'Django Rocks': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://www.djangorocks.com"|\'http://www.djangorocks.com\')(\s*)>(\s*|\n*)Django Rocks(\s*|\n*)</a>(\s*|\n*)</li>',
+            'Django Rocks': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://www.djangorocks.com/"|\'http://www.djangorocks.com/\')(\s*)>(\s*|\n*)Django Rocks(\s*|\n*)</a>(\s*|\n*)</li>',
             'How to Tango with Django': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://www.tangowithdjango.com/"|\'http://www.tangowithdjango.com/\')(\s*)>(\s*|\n*)How to Tango with Django(\s*|\n*)</a>(\s*|\n*)</li>',
             'Bottle': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://bottlepy.org/docs/dev/"|\'http://bottlepy.org/docs/dev/\')(\s*)>(\s*|\n*)Bottle(\s*|\n*)</a>(\s*|\n*)</li>',
             'Flask': r'<li>(\s*|\n*)<a(\s+)href(\s*)=(\s*)("http://flask.pocoo.org"|\'http://flask.pocoo.org\')(\s*)>(\s*|\n*)Flask(\s*|\n*)</a>(\s*|\n*)</li>',
