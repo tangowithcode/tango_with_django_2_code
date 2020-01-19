@@ -3,7 +3,7 @@
 # By Leif Azzopardi and David Maxwell
 # With assistance from Gerardo A-C (https://github.com/gerac83) and Enzo Roiz (https://github.com/enzoroiz)
 # 
-# Chapter 8 -- Forms
+# Chapter 8 -- Working with Templates
 # Last updated: January 8th, 2020
 # Revising Author: David Maxwell
 # 
