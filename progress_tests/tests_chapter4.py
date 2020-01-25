@@ -4,7 +4,7 @@
 # With assistance from Enzo Roiz (https://github.com/enzoroiz)
 # 
 # Chapter 4 -- Templates and Media Files
-# Last updated October 3rd, 2019
+# Last updated January 25th, 2020
 # Revising Author: David Maxwell
 # 
 
@@ -18,6 +18,7 @@
 #
 
 import os
+import re
 import importlib
 from django.urls import reverse
 from django.test import TestCase
@@ -255,6 +256,7 @@ class Chapter4ExerciseTests(TestCase):
     def test_about_contains_cat(self):
         """
         Checks whether the rendered about view has the picture of a cat.
+        We need to be a little bit lenient here as the example above includes a period, and in the exercise instructions, the required alt text is ended with a period. Either with or without is acceptable.
         """
-        required_str = f"<img src=\"{settings.MEDIA_URL}cat.jpg\" alt=\"Picture of a Cat\" />"
-        self.assertTrue(required_str in self.about_response.content.decode(), f"{FAILURE_HEADER}The HTML markup to include the image of a cat in the about template was not found. It needs to match exactly what we are looking for. Check the book.{FAILURE_FOOTER}")
+        required_pattern = f"<img src=\"{settings.MEDIA_URL}cat.jpg\" alt=\"Picture of a Cat.?\" />"
+        self.assertTrue(re.search(required_pattern, self.about_response.content.decode()), f"{FAILURE_HEADER}The HTML markup to include the image of a cat in the about template was not found. It needs to match exactly what we are looking for. Check the book.{FAILURE_FOOTER}")
