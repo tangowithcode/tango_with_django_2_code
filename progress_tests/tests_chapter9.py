@@ -4,7 +4,7 @@
 # With assistance from Gerardo A-C (https://github.com/gerac83) and Enzo Roiz (https://github.com/enzoroiz)
 # 
 # Chapter 9 -- Forms
-# Last updated: January 10th, 2020
+# Last updated: February 6th, 2020
 # Revising Author: David Maxwell
 # 
 
@@ -214,7 +214,7 @@ class Chapter9RegistrationTests(TestCase):
 
         template_str = get_template(template_path)
         full_title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Register(\s*|\n*)</title>'
-        block_title_pattern = r'{% block title_block %}(\s*|\n*)Register(\s*|\n*){% endblock %}'
+        block_title_pattern = r'{% block title_block %}(\s*|\n*)Register(\s*|\n*){% (endblock|endblock title_block) %}'
 
         request = self.client.get(reverse('rango:register'))
         content = request.content.decode('utf-8')
@@ -343,7 +343,7 @@ class Chapter9LoginTests(TestCase):
 
         template_str = get_template(template_path)
         full_title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Login(\s*|\n*)</title>'
-        block_title_pattern = r'{% block title_block %}(\s*|\n*)Login(\s*|\n*){% endblock %}'
+        block_title_pattern = r'{% block title_block %}(\s*|\n*)Login(\s*|\n*){% (endblock|endblock title_block) %}'
 
         request = self.client.get(reverse('rango:login'))
         content = request.content.decode('utf-8')
@@ -524,7 +524,7 @@ class Chapter9ExerciseTests(TestCase):
 
         template_str = get_template(template_path)
         full_title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Restricted Page(\s*|\n*)</title>'
-        block_title_pattern = r'{% block title_block %}(\s*|\n*)Restricted Page(\s*|\n*){% endblock %}'
+        block_title_pattern = r'{% block title_block %}(\s*|\n*)Restricted Page(\s*|\n*){% (endblock|endblock title_block) %}'
 
         user_object = create_user_object()
         self.client.login(username='testuser', password='testabc123')

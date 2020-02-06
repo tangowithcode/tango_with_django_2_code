@@ -4,7 +4,7 @@
 # With assistance from Gerardo A-C (https://github.com/gerac83) and Enzo Roiz (https://github.com/enzoroiz)
 # 
 # Chapter 8 -- Working with Templates
-# Last updated: January 8th, 2020
+# Last updated: February 6th, 2020
 # Revising Author: David Maxwell
 # 
 
@@ -64,7 +64,7 @@ class Chapter8TemplateTests(TestCase):
         template_base_path = os.path.join(settings.TEMPLATE_DIR, 'rango', 'base.html')
         template_str = self.get_template(template_base_path)
         
-        title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*){% block title_block %}(\s*|\n*)How to Tango with Django!(\s*|\n*){% endblock %}(\s*|\n*)</title>'
+        title_pattern = r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*){% block title_block %}(\s*|\n*)How to Tango with Django!(\s*|\n*){% (endblock|endblock title_block) %}(\s*|\n*)</title>'
         self.assertTrue(re.search(title_pattern, template_str), f"{FAILURE_HEADER}When searching the contents of base.html, we couldn't find the expected title block. We're looking for '<title>Rango - {{% block title_block %}}How to Tango with Django!{{% endblock %}}</title>' with any combination of whitespace.{FAILURE_FOOTER}")
     
     def test_template_usage(self):
@@ -99,19 +99,19 @@ class Chapter8TemplateTests(TestCase):
         
         mappings = {
             reverse('rango:about'): {'full_title_pattern': r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)About Rango(\s*|\n*)</title>',
-                                     'block_title_pattern': r'{% block title_block %}(\s*|\n*)About Rango(\s*|\n*){% endblock %}',
+                                     'block_title_pattern': r'{% block title_block %}(\s*|\n*)About Rango(\s*|\n*){% (endblock|endblock title_block) %}',
                                      'template_filename': 'about.html'},
             reverse('rango:add_category'): {'full_title_pattern': r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Add a Category(\s*|\n*)</title>',
-                                            'block_title_pattern': r'{% block title_block %}(\s*|\n*)Add a Category(\s*|\n*){% endblock %}',
+                                            'block_title_pattern': r'{% block title_block %}(\s*|\n*)Add a Category(\s*|\n*){% (endblock|endblock title_block) %}',
                                             'template_filename': 'add_category.html'},
             reverse('rango:add_page', kwargs={'category_name_slug': 'python'}): {'full_title_pattern': r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Add a Page(\s*|\n*)</title>',
-                                                                                 'block_title_pattern': r'{% block title_block %}(\s*|\n*)Add a Page(\s*|\n*){% endblock %}',
+                                                                                 'block_title_pattern': r'{% block title_block %}(\s*|\n*)Add a Page(\s*|\n*){% (endblock|endblock title_block) %}',
                                                                                  'template_filename': 'add_page.html'},
             reverse('rango:show_category', kwargs={'category_name_slug': 'python'}): {'full_title_pattern': r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Python(\s*|\n*)</title>',
-                                                                                      'block_title_pattern': r'{% block title_block %}(\s*|\n*){% if category %}(\s*|\n*){{ category.name }}(\s*|\n*){% else %}(\s*|\n*)Unknown Category(\s*|\n*){% endif %}(\s*|\n*){% endblock %}',
+                                                                                      'block_title_pattern': r'{% block title_block %}(\s*|\n*){% if category %}(\s*|\n*){{ category.name }}(\s*|\n*){% else %}(\s*|\n*)Unknown Category(\s*|\n*){% endif %}(\s*|\n*){% (endblock|endblock title_block) %}',
                                                                                       'template_filename': 'category.html'},
             reverse('rango:index'): {'full_title_pattern': r'<title>(\s*|\n*)Rango(\s*|\n*)-(\s*|\n*)Homepage(\s*|\n*)</title>',
-                                     'block_title_pattern': r'{% block title_block %}(\s*|\n*)Homepage(\s*|\n*){% endblock %}',
+                                     'block_title_pattern': r'{% block title_block %}(\s*|\n*)Homepage(\s*|\n*){% (endblock|endblock title_block) %}',
                                      'template_filename': 'index.html'},
         }
 
