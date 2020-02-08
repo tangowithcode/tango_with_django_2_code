@@ -230,7 +230,7 @@ class Chapter9RegistrationTests(TestCase):
         request = self.client.get(reverse('rango:register'))
         content = request.content.decode('utf-8')
 
-        self.assertTrue('<h1>Register for Rango</h1>' in content, f"{FAILURE_HEADER}We couldn't find the '<h1>Register for Rango</h1>' header tag in your register template. Did you follow the specification in the book to the leter?{FAILURE_FOOTER}")
+        self.assertTrue('<h1>Register for Rango</h1>' in content, f"{FAILURE_HEADER}We couldn't find the '<h1>Register for Rango</h1>' header tag in your register template. Did you follow the specification in the book to the letter?{FAILURE_FOOTER}")
         self.assertTrue('Rango says: <strong>register here!</strong>' in content, f"{FAILURE_HEADER}When loading the register view with a GET request, we didn't see the required 'Rango says: <strong>register here!</strong>'. Check your register.html template and try again.{FAILURE_FOOTER}")
         self.assertTrue('enctype="multipart/form-data"' in content, f"{FAILURE_HEADER}In your register.html template, are you using 'multipart/form-data' for the <form>'s 'enctype'?{FAILURE_FOOTER}")
         self.assertTrue('action="/rango/register/"' in content, f"{FAILURE_HEADER}Is your <form> in register.html pointing to the correct URL for registering a user?{FAILURE_FOOTER}")
